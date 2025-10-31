@@ -117,6 +117,9 @@ namespace Loop {
   uint8_t cont = 0;
 };
 
+float valorOzono;
+float valorTemperatura;
+
 // ..............................................................
 // ..............................................................
 void loop () {
@@ -133,12 +136,18 @@ void loop () {
 
   lucecitas();
 
-  float valorOzono = elMedidor.medirOzono();
+  if ((cont % 10 != 0)){
+    valorOzono = elMedidor.medirOzono();
+    valorTemperatura = elMedidor.medirTemperatura();
+  } else {
+    valorOzono = 10.5;
+    valorTemperatura = 60.1;
+  }
+
   elPuerto.escribir("valor de ozono = ");
   elPuerto.escribir( valorOzono );
   elPuerto.escribir( "\n" );
 
-  float valorTemperatura = elMedidor.medirTemperatura();
   elPuerto.escribir("valor de Temperatura = ");
   elPuerto.escribir( valorTemperatura );
   elPuerto.escribir( "\n" );
